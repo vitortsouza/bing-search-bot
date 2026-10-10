@@ -64,7 +64,7 @@ function App() {
 
   const simulateSearch = async () => {
     // Intervalo ajustado de 6 a 10 segundos
-    const delay = Math.floor(Math.random() * 4000) + 6000;
+    const delay = Math.floor(Math.random() * 5000) + 5000; // Aguarda entre 5 e 10 segundos
     return new Promise((resolve) => setTimeout(resolve, delay));
   };
 
