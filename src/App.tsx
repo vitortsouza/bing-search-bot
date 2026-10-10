@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { getAllSearchQueries } from './data/client';
 import Input from './components/Input';
 import Button from './components/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalContainer from './components/Modal';
 
+// Lista de buscas locais (colocada no topo para evitar erros de referência)
+const LOCAL_SEARCH_QUERIES = [
+  'tecnologia', 'noticias hoje', 'receitas fáceis', 'jogos pc',
+  'desenvolvimento web', 'react ts', 'programação python', 'cinema',
+  'musica pop', 'viagens brasil', 'futebol ao vivo', 'clima hoje'
+];
+
 function App() {
-  const [numSearches, setNumSearches] = useState<string>('25'); // Default value changed to 25
+  const [numSearches, setNumSearches] = useState<string>('25');
   const [data, setData] = useState<string[]>([]);
   const [searchQueryWindowSet, setSearchQueryWindowSet] = useState<Set<Window>>(
     new Set<Window>()
@@ -19,11 +25,8 @@ function App() {
   const isSearchingRef = useRef<boolean>(false);
 
   async function fetchSearchQueries() {
-    const searchQueriesObject = await getAllSearchQueries();
-    const searchQueries: string[] = searchQueriesObject.map(
-      (query) => query.search_query
-    );
-    setData(searchQueries);
+    // Usa diretamente os termos locais
+    setData(LOCAL_SEARCH_QUERIES);
   }
 
   useEffect(() => {
@@ -31,12 +34,13 @@ function App() {
   }, []);
 
   const simulateSearch = async () => {
-    const delay = Math.floor(Math.random() * 4000) + 5000; // Random delay between 4 to 9 seconds
+    // Intervalo ajustado de 6 a 10 segundos
+    const delay = Math.floor(Math.random() * 4000) + 6000;
     return new Promise((resolve) => setTimeout(resolve, delay));
   };
 
   function getRandomSearchQuery(): string {
-    const randomIndex = Math.floor(Math.random() * data.length + 1);
+    const randomIndex = Math.floor(Math.random() * data.length);
     if (searchQuerySet.has(data[randomIndex])) {
       return getRandomSearchQuery();
     } else {
@@ -51,7 +55,6 @@ function App() {
     }
     if (data && data.length > 0) {
       const numSearchesInt = parseInt(numSearches, 10);
-      // const delayTimeInt = parseInt(delayTime, 10);
       isSearchingRef.current = true;
       toast(
         `Bing searches have been initiated with ${numSearchesInt} searches.`
@@ -171,16 +174,10 @@ function App() {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="ml-1 text-white hover:text-orange-300 w-4 h-4 cursor-pointer"
-              onClick={() =>
-                window.open(
-                  'https://github.com/Arzzam/bing-search-bot',
-                  '_blank'
-                )
-              }
             >
               <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
               <path d="M9 18c-4.51 2-5-2-7-2" />
