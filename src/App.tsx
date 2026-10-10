@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ModalContainer from './components/Modal';
 
 function App() {
-  const [numSearches, setNumSearches] = useState<string>('10');
+  const [numSearches, setNumSearches] = useState<string>('25'); // Default value changed to 25
   const [data, setData] = useState<string[]>([]);
   const [searchQueryWindowSet, setSearchQueryWindowSet] = useState<Set<Window>>(
     new Set<Window>()
@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   const simulateSearch = async () => {
-    const delay = Math.floor(Math.random() * 5000) + 5000; // Random delay between 5 to 10 seconds
+    const delay = Math.floor(Math.random() * 4000) + 5000; // Random delay between 4 to 9 seconds
     return new Promise((resolve) => setTimeout(resolve, delay));
   };
 
