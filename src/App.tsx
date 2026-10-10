@@ -8,9 +8,38 @@ import ModalContainer from './components/Modal';
 
 // Lista de buscas locais (colocada no topo para evitar erros de referência)
 const LOCAL_SEARCH_QUERIES = [
-  'tecnologia', 'noticias hoje', 'receitas fáceis', 'jogos pc',
-  'desenvolvimento web', 'react ts', 'programação python', 'cinema',
-  'musica pop', 'viagens brasil', 'futebol ao vivo', 'clima hoje'
+  // Tecnologia & Programação
+  'tecnologia', 'desenvolvimento web', 'react ts', 'programação python',
+  'inteligencia artificial', 'computação em nuvem', 'segurança da informação',
+  'gadgets lançamentos', 'smartphones 2026', 'teclado mecanico',
+
+  // Notícias & Informações Gerais
+  'noticias hoje', 'clima hoje', 'previsão do tempo', 'cotação do dolar',
+  'bolsa de valores', 'ultimas noticias brasil', 'mercado financeiro',
+
+  // Entretenimento, Cinema & Música
+  'jogos pc', 'cinema', 'musica pop', 'lançamentos da netflix',
+  'melhores filmes 2026', 'series para maratonar', 'jogos ps5',
+  'animes da temporada', 'fatos curiosos', 'livros mais vendidos',
+
+  // Viagens & Lugares
+  'viagens brasil', 'turismo em sp', 'praias do nordeste',
+  'destinos internacionais', 'dicas de viagem', 'pousadas no interior',
+
+  // Esportes & Vida Saudável
+  'futebol ao vivo', 'tabela do brasileirão', 'campeonato brasileiro',
+  'exercicios em casa', 'treino de musculação', 'alimentos saudaveis',
+  'resultados do futebol', 'formula 1 calendario',
+
+  // Culinária & Gastronomia
+  'receitas fáceis', 'bolo de cenoura simples', 'sobremesas rapidas',
+  'jantar rapido e facil', 'receitas airfryer', 'pratos vegetarianos',
+
+  // Casa, Trabalho & Estilo de Vida
+  'decoração sala pequena', 'dicas de organização', 'carreiras em tecnologia',
+  'trabalho remoto vagas', 'dicas de produtividade', 'plantas para apartamento',
+  'cuidados com pets', 'jardinagem para iniciantes', 'economia domestica',
+  'dicas de estudos', 'ingles para iniciantes', 'como fazer meditação'
 ];
 
 function App() {
@@ -40,13 +69,19 @@ function App() {
   };
 
   function getRandomSearchQuery(): string {
+  // Filtra apenas as buscas da lista local que ainda NÃO foram realizadas neste lote
+  const availableQueries = data.filter((query) => !searchQuerySet.has(query));
+
+  // Se já tiver usado todas as palavras da lista, limpa o histórico para reutilizá-las
+  if (availableQueries.length === 0) {
     const randomIndex = Math.floor(Math.random() * data.length);
-    if (searchQuerySet.has(data[randomIndex])) {
-      return getRandomSearchQuery();
-    } else {
-      return data[randomIndex];
-    }
+    return data[randomIndex];
   }
+
+  // Sorteia uma palavra unicamente entre as disponíveis
+  const randomIndex = Math.floor(Math.random() * availableQueries.length);
+  return availableQueries[randomIndex];
+}
 
   const scheduleSearches = async () => {
     if (!numSearches) {
