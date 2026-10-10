@@ -2,6 +2,7 @@
   "name": "auto_search",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://vitortsouza.github.io/bing-search-bot",
   "type": "module",
   "scripts": {
     "dev": "vite",
