@@ -16,30 +16,60 @@ const LOCAL_SEARCH_QUERIES = [
   // Notícias & Informações Gerais
   'noticias hoje', 'clima hoje', 'previsão do tempo', 'cotação do dolar',
   'bolsa de valores', 'ultimas noticias brasil', 'mercado financeiro',
+  'impostos 2026', 'eleições candidatos',
 
   // Entretenimento, Cinema & Música
   'jogos pc', 'cinema', 'musica pop', 'lançamentos da netflix',
   'melhores filmes 2026', 'series para maratonar', 'jogos ps5',
   'animes da temporada', 'fatos curiosos', 'livros mais vendidos',
+  'shows perto de mim', 'podcasts brasileiros', 'kpop novidades',
 
   // Viagens & Lugares
   'viagens brasil', 'turismo em sp', 'praias do nordeste',
   'destinos internacionais', 'dicas de viagem', 'pousadas no interior',
+  'passagens baratas', 'roterios de viagem', 'pontos turísticos rio',
 
   // Esportes & Vida Saudável
   'futebol ao vivo', 'tabela do brasileirão', 'campeonato brasileiro',
   'exercicios em casa', 'treino de musculação', 'alimentos saudaveis',
   'resultados do futebol', 'formula 1 calendario',
+  'nba placar', 'corrida de rua iniciantes', 'yoga para flexibilidade',
 
   // Culinária & Gastronomia
   'receitas fáceis', 'bolo de cenoura simples', 'sobremesas rapidas',
   'jantar rapido e facil', 'receitas airfryer', 'pratos vegetarianos',
+  'cafés especiais', 'pão caseiro receita', 'comida brasileira típica',
 
   // Casa, Trabalho & Estilo de Vida
   'decoração sala pequena', 'dicas de organização', 'carreiras em tecnologia',
   'trabalho remoto vagas', 'dicas de produtividade', 'plantas para apartamento',
   'cuidados com pets', 'jardinagem para iniciantes', 'economia domestica',
-  'dicas de estudos', 'ingles para iniciantes', 'como fazer meditação'
+  'dicas de estudos', 'ingles para iniciantes', 'como fazer meditação',
+  'minimalismo simples', 'limpeza ecologica casa',
+
+  // Finanças & Investimentos
+  'investir em renda fixa', 'tesouro direto', 'carteira de ações',
+  'cripto hoje', 'conta digital sem tarifa', 'como sair das dívidas',
+
+  // Moda & Beleza
+  'tendencias de moda', 'maquiagem natural', 'cabelos cacheados cuidados',
+  'skincare rotina simples', 'roupas sustentáveis',
+
+  // Educação & Carreira
+  'cursos gratuitos online', 'faculdade eaD', 'certificações de ti',
+  'redação enem dicas', 'primeiro emprego dicas',
+
+  // Saúde & Bem-estar
+  'sono de qualidade', 'terapia online', 'ansiedade como lidar',
+  'alimentação para emagrecer', 'postura no trabalho',
+
+  // Sustentabilidade & Meio Ambiente
+  'reciclagem em casa', 'energia solar residencial', 'consumo consciente',
+  'compostagem caseira',
+
+  // Automóveis & Mobilidade
+  'carros eletricos 2026', 'tabela fipe consulta', 'dicas de direction',
+  'moto manutenção basica', 'apps de mobilidade urbana'
 ];
 
 function App() {
@@ -64,7 +94,7 @@ function App() {
 
   const simulateSearch = async () => {
     // Intervalo ajustado de 6 a 10 segundos
-    const delay = Math.floor(Math.random() * 5000) + 5000; // Aguarda entre 5 e 10 segundos
+    const delay = Math.floor(Math.random() * 6000) + 6000; // Aguarda entre 6 e 12 segundos
     return new Promise((resolve) => setTimeout(resolve, delay));
   };
 
